@@ -1,6 +1,6 @@
 # Email Click Events
 view: users_messages_email_click {
-  sql_table_name: PUBLIC.USERS_MESSAGES_EMAIL_CLICK ;;
+  sql_table_name: AD_HOC.USERS_MESSAGES_EMAIL_CLICK ;;
 
   dimension: id {
     primary_key: yes
@@ -135,13 +135,13 @@ view: users_messages_email_click {
   measure: email_unique_clicks_mvid {
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."EMAIL_ADDRESS", ${TABLE}."MESSAGE_VARIATION_ID" ;;
+    sql: (${TABLE}."EMAIL_ADDRESS" || ${TABLE}."MESSAGE_VARIATION_ID") ;;
   }
 
   measure: email_unique_clicks_csid {
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."EMAIL_ADDRESS", ${TABLE}."CANVAS_STEP_ID" ;;
+    sql: (${TABLE}."EMAIL_ADDRESS" || ${TABLE}."CANVAS_STEP_ID") ;;
   }
 
   measure: email_unique_clicks {

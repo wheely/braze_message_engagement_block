@@ -1,7 +1,7 @@
 #########################
 # Connection
 #########################
-connection: "currents_connection"
+connection: "aws_redshift_wheely"
 
 #########################
 # Conversion Views
