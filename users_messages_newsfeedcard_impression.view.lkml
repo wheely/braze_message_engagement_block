@@ -1,6 +1,6 @@
 # Newsfeed Card Impression Events
 view: users_messages_newsfeedcard_impression {
-  sql_table_name: PUBLIC.USERS_MESSAGES_NEWSFEEDCARD_IMPRESSION ;;
+  sql_table_name: BRAZE.USERS_MESSAGES_NEWSFEEDCARD_IMPRESSION ;;
 
   dimension: id {
     primary_key: yes

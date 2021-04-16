@@ -1,6 +1,6 @@
 # Push Bounce Events
 view: users_messages_pushnotification_bounce {
-  sql_table_name: PUBLIC.USERS_MESSAGES_PUSHNOTIFICATION_BOUNCE ;;
+  sql_table_name: BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_BOUNCE ;;
 
   dimension: id {
     primary_key: yes

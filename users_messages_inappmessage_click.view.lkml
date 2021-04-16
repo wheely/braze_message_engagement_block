@@ -1,6 +1,6 @@
 # In-App Message Click Events
 view: users_messages_inappmessage_click {
-  sql_table_name: PUBLIC.USERS_MESSAGES_INAPPMESSAGE_CLICK ;;
+  sql_table_name: BRAZE.USERS_MESSAGES_INAPPMESSAGE_CLICK ;;
 
   dimension: id {
     primary_key: yes

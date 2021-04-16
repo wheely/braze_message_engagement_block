@@ -1,6 +1,6 @@
 # Canvas Conversions
 view: users_canvas_conversion {
-  sql_table_name: PUBLIC.USERS_CANVAS_CONVERSION ;;
+  sql_table_name: BRAZE.USERS_CANVAS_CONVERSION ;;
 
   dimension: id {
     primary_key: yes

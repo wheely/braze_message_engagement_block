@@ -1,6 +1,6 @@
 # Control Group Enrollment
 view: users_campaigns_enrollincontrol {
-  sql_table_name: PUBLIC.USERS_CAMPAIGNS_ENROLLINCONTROL ;;
+  sql_table_name: BRAZE.USERS_CAMPAIGNS_ENROLLINCONTROL ;;
 
   dimension: id {
     primary_key: yes

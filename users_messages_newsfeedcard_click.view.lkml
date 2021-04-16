@@ -1,6 +1,6 @@
 # Newsfeed Card Click Events
 view: users_messages_newsfeedcard_click {
-  sql_table_name: PUBLIC.USERS_MESSAGES_NEWSFEEDCARD_CLICK ;;
+  sql_table_name: BRAZE.USERS_MESSAGES_NEWSFEEDCARD_CLICK ;;
 
   dimension: id {
     primary_key: yes
