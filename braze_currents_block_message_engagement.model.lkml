@@ -93,6 +93,7 @@ include: "push_marketing_pressure.dashboard"
 # Note: Uncomment the block below when doing Campaign Conversion analytics
 #########################
 explore: users_campaigns_conversion {
+  hidden: yes
   label: "Campaign Conversions"
   view_label: "Campaign Conversions"
   join: users_campaigns_enrollincontrol { # only joining so we can have a "user in control" dimension--all its dimensions are hidden"
@@ -112,6 +113,7 @@ explore: users_campaigns_conversion {
 # Note: Uncomment the block below when doing Canvas Conversion analytics
 #########################
 explore: users_canvas_conversion {
+  hidden: yes
   label: "Canvas Conversions"
   view_label: "Canvas Conversions"
   join: users_canvas_entry {
@@ -129,6 +131,7 @@ explore: users_canvas_conversion {
 # Email Events Explore
 #########################
 explore: users_messages_email_send {
+  hidden: yes
   label: "Email Events"
   view_label: "Emails Sent"
   join: users_messages_email_delivery {
@@ -206,8 +209,8 @@ explore: users_messages_email_send {
 #########################
 # Email Marketing Pressure
 #########################
-explore: email_messaging_frequency {}
-explore: email_messaging_cadence {}
+explore: email_messaging_frequency { hidden: yes }
+explore: email_messaging_cadence { hidden: yes }
 
 #########################
 # IAM Events Explore
@@ -215,6 +218,7 @@ explore: email_messaging_cadence {}
 # Note: Uncomment the block below when doing In-App Message analytics
 #########################
 explore: users_messages_inappmessage_impression {
+  hidden: yes
   label: "In-App Message Events"
   view_label: "IAM Impressions"
   join: users_messages_inappmessage_click {
@@ -271,6 +275,7 @@ explore: users_messages_inappmessage_impression {
 # Push Events Explore
 #########################
 explore: users_messages_pushnotification_send {
+  hidden: yes
   label: "Push Events"
   view_label: "Push Sent"
   join: users_messages_pushnotification_open {
@@ -317,8 +322,8 @@ explore: users_messages_pushnotification_send {
 #########################
 # Push Marketing Pressure
 #########################
-explore: push_messaging_frequency {}
-explore: push_messaging_cadence {}
+explore: push_messaging_frequency { hidden: yes }
+explore: push_messaging_cadence { hidden: yes }
 
 #########################
 # Uninstall Events Explore
@@ -326,6 +331,7 @@ explore: push_messaging_cadence {}
 # Note: Uncomment the block below when doing Uninstall analytics
 #########################
 explore: users_behaviors_uninstall {
+  hidden: yes
   label: "Uninstall Events"
   view_label: "Uninstall Events"
 }
@@ -337,6 +343,7 @@ explore: users_behaviors_uninstall {
 # Note: Uncomment the block below when doing Webhook message analytics
 #########################
 explore: users_messages_webhook_send {
+  hidden: yes
   label: "Webhook Events"
   view_label: "Webhook Send Events"
 }
