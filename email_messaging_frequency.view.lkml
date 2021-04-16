@@ -1,10 +1,10 @@
 # Email Messaging Frequency
 view: email_messaging_frequency {
   derived_table: {
-    sql: SELECT date_trunc({% parameter date_granularity %}, to_timestamp(deliveries.time)) AS delivered_time,
+    sql: SELECT date_trunc({% parameter date_granularity %}, (TIMESTAMP 'epoch' + deliveries.time * INTERVAL '1 Second')) AS delivered_time,
         deliveries.email_address  AS delivered_address,
         deliveries.ID as delivered_id,
-        count(distinct deliveries.id ) over (partition by delivered_time, delivered_address) AS frequency,
+        count(deliveries.id) over (partition by delivered_time, delivered_address) AS frequency,
         row_number() over (partition by delivered_address, delivered_time order by delivered_time) as rank,
         opens.email_address as opened_address,
         opens.message_variation_id as opened_mv_id,
@@ -107,28 +107,28 @@ view: email_messaging_frequency {
     description: "unique opens corresponding to message variations"
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."OPENED_ADDRESS", ${TABLE}."OPENED_MV_ID" ;;
+    sql: (${TABLE}."OPENED_ADDRESS" || ${TABLE}."OPENED_MV_ID") ;;
   }
 
   measure: unique_opens_csid {
     description: "unique opens corresponding to canvas steps"
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."OPENED_ADDRESS", ${TABLE}."OPENED_CS_ID" ;;
+    sql: (${TABLE}."OPENED_ADDRESS" || ${TABLE}."OPENED_CS_ID") ;;
   }
 
   measure: unique_clicks_mvid {
     description: "unique clicks corresponding to message variations"
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."CLICKED_ADDRESS", ${TABLE}."CLICKED_MV_ID" ;;
+    sql: (${TABLE}."CLICKED_ADDRESS" || ${TABLE}."CLICKED_MV_ID") ;;
   }
 
   measure: unique_clicks_csid {
     description: "unique clicks corresponding to canvas steps"
     type: count_distinct
     hidden: yes
-    sql: ${TABLE}."CLICKED_ADDRESS", ${TABLE}."CLICKED_CS_ID" ;;
+    sql: (${TABLE}."CLICKED_ADDRESS" || ${TABLE}."CLICKED_CS_ID") ;;
   }
 
   measure: unique_opens {

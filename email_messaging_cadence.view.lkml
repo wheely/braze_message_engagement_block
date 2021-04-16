@@ -2,7 +2,7 @@
 view: email_messaging_cadence {
   derived_table: {
     sql: with deliveries as
-      (select TO_TIMESTAMP(time) AS delivered_timestamp,
+      (select (TIMESTAMP 'epoch' + time * INTERVAL '1 Second') AS delivered_timestamp,
       email_address AS delivered_address,
       message_variation_id as d_message_variation_id,
       canvas_step_id as d_canvas_step_id,
@@ -10,7 +10,7 @@ view: email_messaging_cadence {
       canvas_name as d_canvas_name,
       id as delivered_id,
       rank() over (partition by delivered_address order by delivered_timestamp asc) as delivery_event,
-      min(delivered_timestamp) over (partition by delivered_address order by delivered_timestamp asc) as first_delivered,
+      min(delivered_timestamp) over (partition by delivered_address order by delivered_timestamp asc ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) as first_delivered,
       datediff(day, lag(delivered_timestamp) over (partition by delivered_address order by delivered_timestamp asc), delivered_timestamp) as diff_days,
       datediff(week, lag(delivered_timestamp) over (partition by delivered_address order by delivered_timestamp asc), delivered_timestamp) as diff_weeks
       from BRAZE.USERS_MESSAGES_EMAIL_DELIVERY group by 1,2,3,4,5,6,7),
@@ -139,15 +139,15 @@ view: email_messaging_cadence {
   measure: unique_clicks {
     description: "distinct count of campaigns/canvases clicked per email address; may differ by less than 1% due to inability to link exact instances of emails delivered to emails clicked"
     type: number
-    sql: count(distinct ${TABLE}."CLICK_ADDRESS", ${TABLE}."C_MESSAGE_VARIATION_ID")
-    +count(distinct ${TABLE}."CLICK_ADDRESS", ${TABLE}."C_CANVAS_STEP_ID") ;;
+    sql: count(distinct (${TABLE}."CLICK_ADDRESS" || ${TABLE}."C_MESSAGE_VARIATION_ID"))
+    +count(distinct (${TABLE}."CLICK_ADDRESS" || ${TABLE}."C_CANVAS_STEP_ID")) ;;
   }
 
   measure: unique_opens {
     description: "distinct count of campaigns/canvases opened per email address; may differ by less than 1% due to inability to link exact instances of emails delivered to emails opened"
     type: number
-    sql: count(distinct ${TABLE}."OPEN_ADDRESS", ${TABLE}."O_MESSAGE_VARIATION_ID")
-    +count(distinct ${TABLE}."OPEN_ADDRESS", ${TABLE}."O_CANVAS_STEP_ID") ;;
+    sql: count(distinct (${TABLE}."OPEN_ADDRESS" || ${TABLE}."O_MESSAGE_VARIATION_ID"))
+    +count(distinct (${TABLE}."OPEN_ADDRESS" || ${TABLE}."O_CANVAS_STEP_ID")) ;;
   }
 
   measure: unique_open_rate {

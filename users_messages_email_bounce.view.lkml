@@ -1,6 +1,6 @@
 # Email Bounce Events
 view: users_messages_email_bounce {
-  sql_table_name: AD_HOC.USERS_MESSAGES_EMAIL_BOUNCE ;;
+  sql_table_name: BRAZE.USERS_MESSAGES_EMAIL_BOUNCE ;;
 
   dimension: id {
     primary_key: yes

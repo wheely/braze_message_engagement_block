@@ -1,7 +1,7 @@
 # Push Messaging Cadence
 view: push_messaging_cadence {
   derived_table: {
-    sql: select to_timestamp(sends.time) as send_timestamp,
+    sql: select (TIMESTAMP 'epoch' + sends.time * INTERVAL '1 Second') as send_timestamp,
       sends.user_id as send_user_id,
       bounces.user_id as bounce_user_id,
       sends.message_variation_id as s_message_variation_id,
