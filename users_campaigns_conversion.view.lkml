@@ -1,6 +1,6 @@
 # Campaign Conversions
 view: users_campaigns_conversion {
-  sql_table_name: BRAZE.USERS_CAMPAIGNS_CONVERSION ;;
+  sql_table_name: BRAZE.PASSENGERS_CAMPAIGNS_CONVERSION ;;
 
   dimension: id {
     primary_key: yes

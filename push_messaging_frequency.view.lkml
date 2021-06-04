@@ -8,13 +8,13 @@ view: push_messaging_frequency {
         opens.id  as opened_id,
         coalesce(count(sends.id) over (partition by sent_user_id, sent_time),0)-coalesce(count(bounces.id) over (partition by sent_user_id, sent_time),0) as frequency,
         row_number() over (partition by sent_user_id, sent_time order by sent_time) as rank
-      FROM BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_SEND  as sends
-      LEFT JOIN BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_BOUNCE  as bounces ON (sends.user_id)=(bounces.user_id)
+      FROM BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_SEND  as sends
+      LEFT JOIN BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_BOUNCE  as bounces ON (sends.user_id)=(bounces.user_id)
                   AND
                   ((sends.message_variation_id)=(bounces.message_variation_id)
                   OR
                   (sends.canvas_step_id)=(bounces.canvas_step_id))
-      LEFT JOIN BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_OPEN  as opens ON (sends.user_id)=(opens.user_id)
+      LEFT JOIN BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_OPEN  as opens ON (sends.user_id)=(opens.user_id)
                   AND
                   ((sends.message_variation_id)=(opens.message_variation_id)
                   OR

@@ -1,6 +1,6 @@
 # Push Send Events
 view: users_messages_pushnotification_send {
-  sql_table_name: BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_SEND ;;
+  sql_table_name: BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_SEND ;;
 
   dimension: id {
     primary_key: yes

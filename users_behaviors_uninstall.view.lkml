@@ -1,6 +1,6 @@
 # Uninstall Events
 view: users_behaviors_uninstall {
-  sql_table_name: BRAZE.USERS_BEHAVIORS_UNINSTALL ;;
+  sql_table_name: BRAZE.PASSENGERS_BEHAVIORS_UNINSTALL ;;
 
   dimension: id {
     primary_key: yes
