@@ -4,9 +4,9 @@ view: push_messaging_frequency {
     sql: SELECT * FROM
         (select distinct
         sends.user_id  as sent_user_id,
-        date_trunc({% parameter date_granularity %}, to_timestamp(sends.time)) as sent_time,
+        date_trunc({% parameter date_granularity %}, (TIMESTAMP 'epoch' + sends.time * INTERVAL '1 Second')) as sent_time,
         opens.id  as opened_id,
-        coalesce(count(distinct sends.id) over (partition by sent_user_id, sent_time),0)-coalesce(count(distinct bounces.id) over (partition by sent_user_id, sent_time),0) as frequency,
+        coalesce(count(sends.id) over (partition by sent_user_id, sent_time),0)-coalesce(count(bounces.id) over (partition by sent_user_id, sent_time),0) as frequency,
         row_number() over (partition by sent_user_id, sent_time order by sent_time) as rank
       FROM BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_SEND  as sends
       LEFT JOIN BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_BOUNCE  as bounces ON (sends.user_id)=(bounces.user_id)
