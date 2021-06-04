@@ -1,6 +1,6 @@
 # Email Open Events
 view: users_messages_email_open {
-  sql_table_name: BRAZE.USERS_MESSAGES_EMAIL_OPEN ;;
+  sql_table_name: BRAZE.PASSENGERS_MESSAGES_EMAIL_OPEN ;;
 
   dimension: id {
     primary_key: yes
