@@ -1,6 +1,6 @@
 # iOS Foreground Events
 view: users_messages_pushnotification_iosforeground {
-  sql_table_name: BRAZE.USERS_MESSAGES_PUSHNOTIFICATION_IOSFOREGROUND ;;
+  sql_table_name: BRAZE.PASSENGERS_MESSAGES_PUSHNOTIFICATION_IOSFOREGROUND ;;
 
   dimension: id {
     primary_key: yes
