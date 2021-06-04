@@ -1,6 +1,6 @@
 # Email Soft Bounce Events
 view: users_messages_email_softbounce {
-  sql_table_name: BRAZE.USERS_MESSAGES_EMAIL_SOFTBOUNCE ;;
+  sql_table_name: BRAZE.PASSENGERS_MESSAGES_EMAIL_SOFTBOUNCE ;;
 
   dimension: id {
     primary_key: yes
